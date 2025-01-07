@@ -11,6 +11,8 @@ export default class GameSavingLoader {
         return new GameSaving(parsedData.id, parsedData.created, parsedData.userInfo);
       })
       .then((saving) => saving)
-      .then(null, (error) => Promise.reject(new Error(`Failed to load game saving: ${error.message}`)));
+      .catch((error) => {
+        throw new Error(`Failed to load game saving: ${error.message}`);
+      });
   }
 }
